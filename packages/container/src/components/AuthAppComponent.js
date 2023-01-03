@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
-import { mount } from "marketing/MarketingApp";
+import { mount } from "auth/AuthApp";
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
   const divRef = useRef(null);
   const history = useHistory();
   useEffect(() => {
@@ -14,7 +14,9 @@ export default () => {
             //to avoid infinite loop
             history.push(newPathname);
           }
-        },//for communication from child to container/parent.
+       },//for communication from child to container/parent.
+       initialPath: history.location.pathname,
+       onSignIn
      });
         history.listen(options.onParentNavigate);
     }
